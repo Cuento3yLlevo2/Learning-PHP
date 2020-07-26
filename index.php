@@ -1,3 +1,12 @@
+<!-- las variables o logica php podria agregarse al inicio -->
+<?php 
+// tipiado devil 
+$lastName = 'Hermoso';
+// las comillas dobles representan una string con formateo
+$name = "Manuel Alejandro $lastName";
+// var_dump($name) usado para debugear
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -21,7 +30,7 @@
         <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
       </div>
       <div class="col">
-        <h1><?php echo "Manuel Alejandro Hermoso"; ?></h1>
+        <h1><?php echo $name; ?></h1>
         <h2>PHP Developer</h2>
         <ul>
           <li>Mail: mhermoso1993@gmail.com</li>
