@@ -5,6 +5,25 @@ $lastName = 'Hermoso';
 // las comillas dobles representan una string con formateo
 $name = "Manuel Alejandro $lastName";
 // var_dump($name) usado para debugear
+
+// declaramos un array
+$jobs = [
+  [
+    'jobTitle' => 'PHP Developer',
+    'jobDescription' => 'Working as PHP Developer is very fun!',
+  ],
+  [
+    'jobTitle' => 'Python Developer',
+    'jobDescription' => 'My favorite thing using Python is Data Science',
+  ],
+  [
+    'jobTitle' => 'Java Developer',
+    'jobDescription' => 'It is pretty good when creating movile apps!'
+  ]
+];
+
+// $jobs[0]['jobTitle']
+// var_dump($jobs);
 ?>
 
 <!doctype html>
@@ -55,8 +74,8 @@ $name = "Manuel Alejandro $lastName";
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
             <li class="work-position">
-              <h5>PHP Developer</h5>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
+              <h5><?php echo $jobs[0]['jobTitle']; ?></h5>
+              <p><?php echo $jobs[0]['jobDescription']; ?></p>
               <strong>Achievements:</strong>
               <ul>
                 <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
@@ -65,8 +84,8 @@ $name = "Manuel Alejandro $lastName";
               </ul>
             </li>
             <li class="work-position">
-                <h5>PHP Developer</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
+                <h5><?php echo $jobs[1]['jobTitle']; ?></h5>
+                <p><?php echo $jobs[1]['jobDescription']; ?></p>
                 <strong>Achievements:</strong>
                 <ul>
                   <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
@@ -75,8 +94,8 @@ $name = "Manuel Alejandro $lastName";
                 </ul>
               </li>
               <li class="work-position">
-                  <h5>PHP Developer</h5>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
+                  <h5><?php echo $jobs[2]['jobTitle']; ?></h5>
+                  <p><?php echo $jobs[2]['jobDescription']; ?></p>
                   <strong>Achievements:</strong>
                   <ul>
                     <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
