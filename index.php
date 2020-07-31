@@ -17,7 +17,7 @@ $jobs = [
     'jobDescription' => 'My favorite thing using Python is Data Science',
   ],
   [
-    'jobTitle' => 'Java Developer',
+    'jobTitle' => 'Java Developer', 
     'jobDescription' => 'It is pretty good when creating movile apps!'
   ]
 ];
