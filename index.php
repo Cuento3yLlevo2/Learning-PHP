@@ -6,19 +6,37 @@ $lastName = 'Hermoso';
 $name = "Manuel Alejandro $lastName";
 // var_dump($name) usado para debugear
 
-// declaramos un array
+$limitMonths = 12;
 $jobs = [
   [
     'jobTitle' => 'PHP Developer',
     'jobDescription' => 'Working as PHP Developer is very fun!',
+    'visible' => true,
+    'months' => 6
   ],
   [
     'jobTitle' => 'Python Developer',
     'jobDescription' => 'My favorite thing using Python is Data Science',
+    'visible' => false,
+    'months' => 4
   ],
   [
     'jobTitle' => 'Java Developer', 
-    'jobDescription' => 'It is pretty good when creating movile apps!'
+    'jobDescription' => 'It is pretty good when creating movile apps!',
+    'visible' => true,
+    'months' => 5
+  ],
+  [
+    'jobTitle' => 'Node Dev',
+    'jobDescription' => 'My favorite thing using Python is Data Science',
+    'visible' => true,
+    'months' => 3
+  ],
+  [
+    'jobTitle' => 'Frontend Dev', 
+    'jobDescription' => 'It is pretty good when creating movile apps!',
+    'visible' => true,
+    'months' => 3
   ]
 ];
 
@@ -74,11 +92,24 @@ $jobs = [
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
             <?php 
+            $totalMoths = 0;
             $size = count($jobs);
             for($idx = 0; $idx < $size; $idx++) {
+
+              $totalMoths += $jobs[$idx]['months'];
+
+              if($totalMoths > $limitMonths) {
+                break;
+              }
+
+              if($jobs[$idx]['visible'] == false) {
+                continue;
+              }
+
               echo '<li class="work-position">';
               echo '<h5>' . $jobs[$idx]['jobTitle'] . '</h5>';
               echo '<p>' . $jobs[$idx]['jobDescription'] . '</p>';
+              echo '<p>' . $totalMoths . '</p>';
               echo '<strong>Achievements:</strong>';
               echo '<ul>';
               echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
