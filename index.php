@@ -1,47 +1,19 @@
-<!-- las variables o logica php podria agregarse al inicio -->
+
 <?php 
+
+// include('jobs.php');
+
+require_once('jobs.php');
+require_once('jobs.php');
+
+
 // tipiado devil 
 $lastName = 'Hermoso';
 // las comillas dobles representan una string con formateo
 $name = "Manuel Alejandro $lastName";
 // var_dump($name) usado para debugear
 
-$limitMonths = 12;
-$jobs = [
-  [
-    'jobTitle' => 'PHP Developer',
-    'jobDescription' => 'Working as PHP Developer is very fun!',
-    'visible' => true,
-    'months' => 6
-  ],
-  [
-    'jobTitle' => 'Python Developer',
-    'jobDescription' => 'My favorite thing using Python is Data Science',
-    'visible' => false,
-    'months' => 4
-  ],
-  [
-    'jobTitle' => 'Java Developer', 
-    'jobDescription' => 'It is pretty good when creating movile apps!',
-    'visible' => true,
-    'months' => 5
-  ],
-  [
-    'jobTitle' => 'Node Dev',
-    'jobDescription' => 'My favorite thing using Python is Data Science',
-    'visible' => true,
-    'months' => 3
-  ],
-  [
-    'jobTitle' => 'Frontend Dev', 
-    'jobDescription' => 'It is pretty good when creating movile apps!',
-    'visible' => true,
-    'months' => 3
-  ]
-];
-
-
-// var_dump($jobs);
+$limitMonths = 2000;
 ?>
 
 <!doctype html>
@@ -101,22 +73,7 @@ $jobs = [
               if($totalMoths > $limitMonths) {
                 break;
               }
-
-              if($jobs[$idx]['visible'] == false) {
-                continue;
-              }
-
-              echo '<li class="work-position">';
-              echo '<h5>' . $jobs[$idx]['jobTitle'] . '</h5>';
-              echo '<p>' . $jobs[$idx]['jobDescription'] . '</p>';
-              echo '<p>' . $totalMoths . '</p>';
-              echo '<strong>Achievements:</strong>';
-              echo '<ul>';
-              echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-              echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-              echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-              echo '</ul>';
-              echo '</li>';
+              printJob($jobs[$idx]); 
             } 
             ?>
           </ul>
@@ -180,7 +137,7 @@ $jobs = [
     </div>
     <div id="resume-footer" class="row">
       <div class="col">
-          Designed by @hectorbenitez
+          Designed by @hermosotech
       </div>
     </div>
   </div>
