@@ -84,4 +84,27 @@ foreach($valoresBajos as $key => $val) {
   echo $val . ', ';
 }
 
+echo '<p> Ejercicio 4: </p>';
+
+echo 32 + 3 . "</br>";
+echo 3 * (2 + 3);
+
+echo '<p> Ejercicio 5: </p>';
+
+$valor = "10";
+if ($valor > 5 and $valor < 10){
+  echo '$valor es mayor que 5 pero menor que 10' . '</br>';
+} 
+if ($valor >= 0 && $valor <= 20) {
+  echo '$valor es mayor o igual a 0 pero menor o igual a 20' . '</br>';
+} 
+if ($valor === "10") {
+  echo '$valor es  identico a "10" en tipo de dato String' . '</br>';
+} 
+if (($valor > 0 and $valor < 5) || ($valor > 10 and $valor < 15)) {
+  echo '$valor es mayor a 0 pero menor a 5 o es mayor a 10 pero menor a 15' . '</br>';
+}
+
+
+
 ?>
