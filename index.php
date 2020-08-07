@@ -68,7 +68,7 @@ $limitMonths = 2000;
             $size = count($jobs);
             for($idx = 0; $idx < $size; $idx++) {
 
-              $totalMoths += $jobs[$idx]['months'];
+              $totalMoths += $jobs[$idx]->months;
 
               if($totalMoths > $limitMonths) {
                 break;
