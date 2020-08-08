@@ -6,6 +6,21 @@ class job {
   public $visible;
   public $months;
 
+  public function __construct($jobTitle, $jobDescription, $visible, $months) {
+    $this->setJobTitle($jobTitle); 
+    $this->jobDescription = $jobDescription;
+    $this->visible = $visible;
+    $this->months = $months;
+  }
+
+  // funcion con operadores ternarios
+  // sentencia booleana ? valor si la sentencia es cierta : valor si es falsa
+  public function getDurationAsString() {
+    $years = floor($this->months / 12);
+    $xtramonths = $this->months % 12;
+    return ($years >= 1 ? "$years years" . ($xtramonths != 0 ? " and $xtramonths months" : "") : "$this->months months");
+  }
+
   public function setJobTitle($jobTitle) {
     $this->jobTitle = $jobTitle;
   }
@@ -15,23 +30,19 @@ class job {
   }
 }
 
-$job1 = new job();
+$job1 = new job('PHP Developer','Working as PHP Developer is very fun!', true, 16);
 
-$job1->setJobTitle('PHP Developer');
-$job1->jobDescription = 'Working as PHP Developer is very fun!';
-$job1->visible = true;
-$job1->months = 16;  
+$job2 = new job('Python Developer','My favorite thing using Python is Data Science', true, 4);
 
-$job2 = new job();
+$job3 = new job('Java Developer','It is pretty good when creating movile apps!', true, 5);
 
-$job2->setJobTitle('Python Developer');
-$job2->jobDescription = 'My favorite thing using Python is Data Science!';
-$job2->visible = true;
-$job2->months = 14;  
+$job4 = new job('Node Dev','Used on the backend', false, 8);
 
 $jobs = [
   $job1,
-  $job2
+  $job2,
+  $job3,
+  $job4
     // [
     //   'jobTitle' => 'PHP Developer',
     //   'jobDescription' => 'Working as PHP Developer is very fun!',
@@ -64,13 +75,7 @@ $jobs = [
     // ]
   ];
 
-  // funcion con operadores ternarios
-// sentencia booleana ? valor si la sentencia es cierta : valor si es falsa
-function getDuration($months) {
-    $years = floor($months / 12);
-    $xtramonths = $months % 12;
-    return ($years >= 1 ? "$years years" . ($xtramonths != 0 ? " and $xtramonths months" : "") : "$months months");
-  }
+
   
 function printJob($job){
 if($job->visible == false) {
@@ -80,7 +85,7 @@ if($job->visible == false) {
 echo '<li class="work-position">';
 echo '<h5>' . $job->getJobTitle() . '</h5>';
 echo '<p>' . $job->jobDescription . '</p>';
-echo '<p>' . getDuration($job->months) . '</p>';
+echo '<p>' . $job->getDurationAsString() . '</p>';
 echo '<strong>Achievements:</strong>';
 echo '<ul>';
 echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
