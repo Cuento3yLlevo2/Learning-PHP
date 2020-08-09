@@ -1,79 +1,31 @@
 <?php
 
-class job {
-  private $jobTitle;
-  public $jobDescription;
-  public $visible;
-  public $months;
+require_once 'app/Models/Job.php';
+require_once 'app/Models/Project.php';
 
-  public function __construct($jobTitle, $jobDescription, $visible, $months) {
-    $this->setJobTitle($jobTitle); 
-    $this->jobDescription = $jobDescription;
-    $this->visible = $visible;
-    $this->months = $months;
-  }
+$job1 = new Job('PHP Developer','Working as PHP Developer is very fun!', true, 16);
 
-  // funcion con operadores ternarios
-  // sentencia booleana ? valor si la sentencia es cierta : valor si es falsa
-  public function getDurationAsString() {
-    $years = floor($this->months / 12);
-    $xtramonths = $this->months % 12;
-    return ($years >= 1 ? "$years years" . ($xtramonths != 0 ? " and $xtramonths months" : "") : "$this->months months");
-  }
+$job2 = new Job('Python Developer','My favorite thing using Python is Data Science', true, 4);
 
-  public function setJobTitle($jobTitle) {
-    $this->jobTitle = $jobTitle;
-  }
+$job3 = new Job('Java Developer','It is pretty good when creating movile apps!', true, 5);
 
-  public function getJobTitle() {
-    return $this->jobTitle;
-  }
-}
+$job4 = new Job('Node Dev','Used on the backend', false, 8);
 
-$job1 = new job('PHP Developer','Working as PHP Developer is very fun!', true, 16);
+$project1 = new Project('Foood delivery app', 'A project to clone a food delivery app like Glovo', ['JAVA','XML']);
+$project2 = new Project('Your Future You', 'A project to train an AI to show you your future you depending on whether you smoke cigarettes and how much.', ['PHP','HLTM','CSS']);
 
-$job2 = new job('Python Developer','My favorite thing using Python is Data Science', true, 4);
-
-$job3 = new job('Java Developer','It is pretty good when creating movile apps!', true, 5);
-
-$job4 = new job('Node Dev','Used on the backend', false, 8);
 
 $jobs = [
   $job1,
   $job2,
   $job3,
   $job4
-    // [
-    //   'jobTitle' => 'PHP Developer',
-    //   'jobDescription' => 'Working as PHP Developer is very fun!',
-    //   'visible' => true,
-    //   'months' => 16
-    // ],
-    // [
-    //   'jobTitle' => 'Python Developer',
-    //   'jobDescription' => 'My favorite thing using Python is Data Science',
-    //   'visible' => false,
-    //   'months' => 14
-    // ],
-    // [
-    //   'jobTitle' => 'Java Developer', 
-    //   'jobDescription' => 'It is pretty good when creating movile apps!',
-    //   'visible' => true,
-    //   'months' => 5
-    // ],
-    // [
-    //   'jobTitle' => 'Node Dev',
-    //   'jobDescription' => 'My favorite thing using Python is Data Science',
-    //   'visible' => true,
-    //   'months' => 24
-    // ],
-    // [
-    //   'jobTitle' => 'Frontend Dev', 
-    //   'jobDescription' => 'It is pretty good when creating movile apps!',
-    //   'visible' => true,
-    //   'months' => 3
-    // ]
   ];
+
+$projects = [
+  $project1,
+  $project2
+];
 
 
   
@@ -81,10 +33,9 @@ function printJob($job){
 if($job->visible == false) {
     return;
 }
-
 echo '<li class="work-position">';
-echo '<h5>' . $job->getJobTitle() . '</h5>';
-echo '<p>' . $job->jobDescription . '</p>';
+echo '<h5>' . $job->getTitle() . '</h5>';
+echo '<p>' . $job->description . '</p>';
 echo '<p>' . $job->getDurationAsString() . '</p>';
 echo '<strong>Achievements:</strong>';
 echo '<ul>';
@@ -93,4 +44,20 @@ echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
 echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
 echo '</ul>';
 echo '</li>';
+}
+
+function printProject($project){
+echo '<div class="project">';
+echo        '<h5>'. $project->getTitle() .'</h5>';
+echo        '<div class="row">';
+echo            '<div class="col-3">';
+echo                '<img id="profile-picture" src="https://ui-avatars.com/api/?name=Manuel+Hermoso&size=255" alt="">';
+echo              '</div>';
+echo                '<div class="col">';
+echo                '<p>'. $project->description .'</p>';
+echo                '<strong>Technologies used: </strong>';
+echo                $project->printTechnologies();
+echo              '</div>'; 
+echo        '</div>';
+echo      '</div>';
 }
