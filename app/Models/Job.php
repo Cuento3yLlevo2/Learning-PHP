@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 require_once 'BaseElement.php';
 
 class Job extends BaseElement {
@@ -19,6 +21,6 @@ class Job extends BaseElement {
         $years = floor($this->months / 12);
         $xtramonths = $this->months % 12;
         return ($years >= 1 ? "$years years" . ($xtramonths != 0 ? " and $xtramonths months" : "") : "$this->months months");
-      }
+    }
 
 }

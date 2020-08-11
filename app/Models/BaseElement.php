@@ -1,6 +1,10 @@
 <?php
 
-class BaseElement {
+namespace App\Models;
+
+require_once 'app/Models/Printable.php';
+
+class BaseElement implements Printable {
     
     private $title;
     public $description;
@@ -19,5 +23,9 @@ class BaseElement {
     public function getTitle() {
       return $this->title;
     }
+
+    public function getDescription() {
+      return $this->description;
+   }
 
   }

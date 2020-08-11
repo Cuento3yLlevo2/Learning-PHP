@@ -2,6 +2,14 @@
 
 require_once 'app/Models/Job.php';
 require_once 'app/Models/Project.php';
+require_once 'app/Models/Printable.php';
+
+require_once 'lib1/Project.php';
+
+use App\Models\{Job, Project, Printable};
+// use Lib1\Project;
+
+$projectLib = new Lib1\Project(); // usando el mismo nombre en otra libreria
 
 $job1 = new Job('PHP Developer','Working as PHP Developer is very fun!', true, 16);
 
@@ -29,13 +37,13 @@ $projects = [
 
 
   
-function printJob($job){
+function printJob(Printable $job){
 if($job->visible == false) {
     return;
 }
 echo '<li class="work-position">';
 echo '<h5>' . $job->getTitle() . '</h5>';
-echo '<p>' . $job->description . '</p>';
+echo '<p>' . $job->getDescription() . '</p>';
 echo '<p>' . $job->getDurationAsString() . '</p>';
 echo '<strong>Achievements:</strong>';
 echo '<ul>';
@@ -46,7 +54,7 @@ echo '</ul>';
 echo '</li>';
 }
 
-function printProject($project){
+function printProject(Printable $project){
 echo '<div class="project">';
 echo        '<h5>'. $project->getTitle() .'</h5>';
 echo        '<div class="row">';
@@ -54,7 +62,7 @@ echo            '<div class="col-3">';
 echo                '<img id="profile-picture" src="https://ui-avatars.com/api/?name=Manuel+Hermoso&size=255" alt="">';
 echo              '</div>';
 echo                '<div class="col">';
-echo                '<p>'. $project->description .'</p>';
+echo                '<p>'. $project->getDescription() .'</p>';
 echo                '<strong>Technologies used: </strong>';
 echo                $project->printTechnologies();
 echo              '</div>'; 
