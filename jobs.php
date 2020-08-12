@@ -29,7 +29,7 @@ function printProject($project){
   echo            '<div class="col-3">';
   echo                '<img id="profile-picture" src="https://ui-avatars.com/api/?name=Manuel+Hermoso&size=255" alt="">';
   echo              '</div>';
-  echo                '<div class="col">';
+  echo                '<div id="technologies" class="col">';
   echo                '<p>'. $project->description .'</p>';
   echo                '<strong>Technologies used: </strong>';
 
@@ -39,8 +39,8 @@ function printProject($project){
     if ($projectTechnologyRelation->project_id == $project->id){
       foreach ($technologies as $technology) {
         if ($technology->id == $projectTechnologyRelation->technology_id) {
-          echo '<span class="badge badge-secondary">'. $technology->name .'</span>';
-        // echo '<span class="badge badge-secondary">'. $value .'</span>';
+          echo '<span class="badge badge-secondary" style="
+          margin: 3px">'. $technology->name .'</span>';
         }
       }
     }
