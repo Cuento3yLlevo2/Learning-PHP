@@ -1,15 +1,10 @@
 <?php
 
-require_once 'app/Models/Job.php';
-require_once 'app/Models/Project.php';
-require_once 'app/Models/Printable.php';
-
-require_once 'lib1/Project.php';
-
+require_once 'vendor/autoload.php';
 use App\Models\{Job, Project, Printable};
 // use Lib1\Project;
 
-$projectLib = new Lib1\Project(); // usando el mismo nombre en otra libreria
+
 
 $job1 = new Job('PHP Developer','Working as PHP Developer is very fun!', true, 16);
 
