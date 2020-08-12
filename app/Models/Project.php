@@ -2,21 +2,8 @@
 
 namespace App\Models;
 
-class Project extends BaseElement {
+use Illuminate\Database\Eloquent\Model;
 
-    public $technologies = [];
-
-    public function __construct($title, $description, $technologies) {
-        parent::__construct($title, $description);
-        $this->technologies = $technologies;
-    }
-
-    function printTechnologies() {
-
-        foreach ($this->technologies as $key => $value) {
-            echo '<span class="badge badge-secondary">'. $value .'</span>';
-        }
-
-    }
-
+class Project extends Model {
+    protected $table = 'projects';
 }

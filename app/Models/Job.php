@@ -2,17 +2,12 @@
 
 namespace App\Models;
 
-class Job extends BaseElement {
+use Illuminate\Database\Eloquent\Model;
 
-    public $visible;
-    public $months;
+class Job extends Model {
+    protected $table = 'jobs';
 
-    public function __construct($title, $description, $visible, $months) {
-        parent::__construct($title, $description);
-        $this->visible = $visible;
-        $this->months = $months;
-    }
-
+  
     // funcion con operadores ternarios
     // sentencia booleana ? valor si la sentencia es cierta : valor si es falsa
     public function getDurationAsString() {
