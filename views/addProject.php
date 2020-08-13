@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1>Add Project</h1>
-        <form action="addProject.php" method="post">
+        <form action="/cursophp/projects/add" method="post">
             <div>
                 <label for="">Title:</label>
                 <input type="text" name="title"></br>

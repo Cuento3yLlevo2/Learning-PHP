@@ -51,6 +51,14 @@ $map->get('addProjects', '/cursophp/projects/add', [
     'controller'=> 'App\Controllers\AddProjectController',
     'action' => 'getAddProjectAction'
     ]);
+$map->post('saveJobs', '/cursophp/jobs/add', [
+      'controller'=> 'App\Controllers\AddJobController',
+      'action' => 'getAddJobAction'
+      ]);
+$map->post('saveProjects', '/cursophp/projects/add', [
+      'controller'=> 'App\Controllers\AddProjectController',
+      'action' => 'getAddProjectAction'
+      ]);
 
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
@@ -103,9 +111,6 @@ function printJob($job){
 
 
 
-
-
-
 if (!$route) {
     echo 'No route found ';
 } else {
@@ -114,5 +119,5 @@ if (!$route) {
     $actionName = $handlerData['action'];
     // instanciar una clase con una cadena y ejecuta funcion con una cadena
     $controller = new $controllerName;
-    $controller->$actionName();
+    $controller->$actionName($request);
 }
