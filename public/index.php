@@ -7,6 +7,8 @@ error_reporting(E_ALL);
 
 require_once '../vendor/autoload.php';
 use Illuminate\Database\Capsule\Manager as Capsule;
+// Aura.Router
+use Aura\Router\RouterContainer;
 
 $capsule = new Capsule;
 
@@ -20,19 +22,31 @@ $capsule->addConnection([
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
 ]);
-
 // Make this Capsule instance available globally via static methods... (optional)
 $capsule->setAsGlobal();
-
 // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
 $capsule->bootEloquent();
 
-$route = $_GET['route'] ?? '/';
 
-if ($route == '/') {
-    require '../index.php';
-} elseif ($route == 'addJob') {
-    require '../addJob.php';
-} elseif ($route == 'addProject') {
-    require '../addProject.php';
+$request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
+    $_SERVER,
+    $_GET,
+    $_POST,
+    $_COOKIE,
+    $_FILES
+);
+
+// Aura.Router
+$routerContainer = new RouterContainer();
+$map = $routerContainer->getMap();
+$map->get('index', '/cursophp/', '../index.php');
+$map->get('addJobs', '/cursophp/jobs/add', '../addJob.php');
+$map->get('addProjects', '/cursophp/projects/add', '../addProject.php');
+
+$matcher = $routerContainer->getMatcher();
+$route = $matcher->match($request);
+if (!$route) {
+    echo 'No route found ';
+} else {
+    require $route->handler;
 }
