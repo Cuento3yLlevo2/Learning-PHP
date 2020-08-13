@@ -1,15 +1,3 @@
-
-<?php 
-use App\Models\Job;
-require_once('jobs.php');
-// tipiado devil 
-$lastName = 'Hermoso';
-// las comillas dobles representan una string con formateo
-$name = "Manuel Alejandro $lastName";
-// var_dump($name) usado para debugear
-$limitMonths = 2000;
-?>
-
 <!doctype html>
 <html lang="en">
 

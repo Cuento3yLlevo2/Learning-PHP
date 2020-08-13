@@ -1,18 +1,3 @@
-<?php
-use App\Models\Job;
-// Variables Globales 
-//var_dump($_GET);
-//var_dump($_POST);
-
-if (!empty($_POST)) {
-    $job = new Job();
-    $job->title = $_POST['title'];
-    $job->description = $_POST['description'];
-    $job->months = $_POST['months'];
-    $job->save();
-}
-?>
-
 <html>
     <head>
          <!-- Bootstrap CSS -->
