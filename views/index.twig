@@ -1,27 +1,11 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
-
-  <title>Resume</title>
-</head>
-
-<body>
-  <div class="container">
+{% extends "layout.twig" %}
+{% block content %}
     <div id="resume-header" class="row">
       <div class="col-3">
         <img id="profile-picture" src="https://ui-avatars.com/api/?name=Manuel+Hermoso&size=255" alt="">
       </div>
       <div class="col">
-        <h1><?php echo $name; ?></h1>
+        <h1>{{ name }}</h1>
         <h2>PHP Developer</h2>
         <ul>
           <li>Mail: mhermoso1993@gmail.com</li>
@@ -45,30 +29,46 @@
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
-            <?php 
-            $totalMoths = 0;
-            $size = count($jobs);
-            for($idx = 0; $idx < $size; $idx++) {
-
-              $totalMoths += $jobs[$idx]->months;
-
-              if($totalMoths > $limitMonths) {
-                break;
-              }
-              printJob($jobs[$idx]); 
-            } 
-            ?>
+            {% for job in jobs %}
+              <li class="work-position">
+                <h5>{{ job.title }}</h5>
+                <p>{{ job.description }}</p>
+                <p> {{ job.getDurationAsString() }} </p>
+                <strong>Achievements:</strong>
+                <ul>
+                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                </ul>
+              </li>
+            {% endfor %}
           </ul>
         </div>
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
-            <?php 
-            $totalMoths = 0;
-            $size = count($projects);
-            for($idx = 0; $idx < $size; $idx++) {
-              printProject($projects[$idx]); 
-            } 
-            ?>
+            {% for project in projects %}
+              <div class="project">
+                <h5>{{ project.title }}</h5>
+                <div class="row">
+                  <div class="col-3">
+                    <img id="profile-picture" src="https://ui-avatars.com/api/?name=Manuel+Hermoso&size=255" alt="">
+                  </div>
+                  <div id="technologies" class="col">
+                    <p>{{ project.description }}</p>
+                    <strong>Technologies used: </strong>
+                    {% for projectTechnologyRelation in projectTechnologiesRelations %}
+                        {% if projectTechnologyRelation.project_id == project.id %}
+                            {% for technology in technologies %}
+                                {% if technology.id == projectTechnologyRelation.technology_id %}
+                                    <span class="badge badge-secondary" style="margin: 3px">{{ technology.name }}</span>
+                                {% endif %}
+                            {% endfor %} 
+                        {% endif %}
+                    {% endfor %} 
+                  </div>
+                </div>
+              </div>  
+            {% endfor %}
         </div>
       </div>
       <div class="col-3">
@@ -99,16 +99,4 @@
           Designed by @hermosotech
       </div>
     </div>
-  </div>
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-    crossorigin="anonymous"></script>
-</body>
-
-</html>
+{% endblock %}

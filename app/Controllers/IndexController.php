@@ -1,21 +1,32 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\{Job, Project};
 
-class IndexController {
+use App\Models\{Job, Project, Technology, ProjectAndTechnologyRelation};
+
+class IndexController extends BaseController {
     public function indexAction() {
 
-        $jobs = Job::all();
-        $projects = Project::all();
+        
         // tipiado devil 
         $lastName = 'Hermoso';
         // las comillas dobles representan una string con formateo
-        $name = "Manuel Alejandro $lastName";
-        // var_dump($name) usado para debugear
-        $limitMonths = 2000;
+        //$limitMonths = 2000;
 
-        include '../views/index.php';
+        $name = "Manuel Alejandro $lastName";
+        $jobs = Job::all();
+        $projects = Project::all();
+        $projectTechnologiesRelations = ProjectAndTechnologyRelation::all();
+        $technologies = Technology::all();
+        
+    
+        return $this->renderHTML('index.twig', [
+            'name' => $name,
+            'jobs' => $jobs,
+            'projects' => $projects,
+            'projectTechnologiesRelations' => $projectTechnologiesRelations,
+            'technologies' => $technologies
+        ]);
 
     }
 

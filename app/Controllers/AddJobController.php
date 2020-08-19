@@ -2,23 +2,50 @@
 
 namespace App\Controllers;
 use App\Models\Job;
+use Respect\Validation\Validator as Val;
 
-class AddJobController {
+class AddJobController extends BaseController {
     public function getAddJobAction($request) {
 
-        //var_dump($request->getMethod());
-        //var_dump((string)$request->getBody());
-        //var_dump($request->getParsedBody());
+        $responseMessage = null;
+
 
         if ($request->getMethod() == 'POST') {
+
             $postData = $request->getParsedBody();
-            $job = new Job();
-            $job->title = $postData['title'];
-            $job->description = $postData['description'];
-            $job->months = $postData['months'];
-            $job->save();
+            
+
+            $jobValidator = Val::key('title', Val::stringType()->notEmpty())
+                                ->key('description', Val::stringType()->notEmpty())
+                                ->key('months', Val::number()->notEmpty());
+            
+            try {
+                $jobValidator->assert($postData);
+
+                $files = $request->getUploadedFiles();
+                var_dump($files);
+                $logo = $files['logo'];
+
+                if ($logo->getError() == UPLOAD_ERR_OK) {
+                    $fileName = $logo->getClientFilename();
+                    $logo->moveTo("uploads/$fileName");
+                }
+                // $job = new Job();
+                // $job->title = $postData['title'];
+                // $job->description = $postData['description'];
+                // $job->months = $postData['months'];
+                // $job->save();
+
+                $responseMessage = 'Saved';
+            } catch (\Exception $e) {
+                $responseMessage = $e->getMessage();
+            }
+            
+            
         }
 
-        include '../views/addJob.php';
+        return $this->renderHTML('addJob.twig', [
+            'responseMessage' => $responseMessage 
+        ]);
     }
 }

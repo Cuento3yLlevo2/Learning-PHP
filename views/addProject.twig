@@ -1,0 +1,25 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <h1>Add Project</h1>
+
+    <div class="alert alert-primary" role="alert">
+        {{ responseMessage }}
+    </div>
+
+    <form action="/cursophp/projects/add" method="post">
+        <div>
+            <label for="">Title:</label>
+            <input type="text" name="title"></br>
+            <label for="">Description:</label>
+            <input type="text" name="description"></br>
+        </div>
+        <div class="form-group">
+            <p>Select which technologies have the project</p>
+            {% for technology in technologies %}
+                <label class="light" ><input type="checkbox" name={{ "technologies_selected[#{technology.name}]" }}> {{technology.name}} </label><br>
+            {% endfor %}
+        </div>
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}
