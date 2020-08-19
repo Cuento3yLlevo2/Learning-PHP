@@ -23,18 +23,20 @@ class AddJobController extends BaseController {
                 $jobValidator->assert($postData);
 
                 $files = $request->getUploadedFiles();
-                var_dump($files);
+                // var_dump($files);
                 $logo = $files['logo'];
+                
+                $job = new Job();
 
                 if ($logo->getError() == UPLOAD_ERR_OK) {
                     $fileName = $logo->getClientFilename();
                     $logo->moveTo("uploads/$fileName");
+                    $job->image_filename = $fileName;
                 }
-                // $job = new Job();
-                // $job->title = $postData['title'];
-                // $job->description = $postData['description'];
-                // $job->months = $postData['months'];
-                // $job->save();
+                $job->title = $postData['title'];
+                $job->description = $postData['description'];
+                $job->months = $postData['months'];
+                $job->save();
 
                 $responseMessage = 'Saved';
             } catch (\Exception $e) {

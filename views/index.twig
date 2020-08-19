@@ -40,6 +40,11 @@
                   <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
                   <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
                 </ul>
+                {% if job.image_filename %}
+                  <div class="job-picture" style="margin: 25px">
+                    <img style="height:150px;width:30%;" src={{ "uploads/#{job.image_filename}" }} alt="job-picture">
+                  </div>
+                {% endif %}
               </li>
             {% endfor %}
           </ul>
