@@ -50,60 +50,60 @@ $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
 
 // main page mapping
-$map->get('index', '/cursophp/', [
+$map->get('index', '/', [
     'controller'=> 'App\Controllers\IndexController',
     'action' => 'indexAction'
     ]);
 
 // jobs mapping 
-$map->get('addJobs', '/cursophp/jobs/add', [
+$map->get('addJobs', '/jobs/add', [
     'controller'=> 'App\Controllers\AddJobController',
     'action' => 'getAddJobAction',
     'auth' => true
     ]);
-$map->post('saveJobs', '/cursophp/jobs/add', [
+$map->post('saveJobs', '/jobs/add', [
     'controller'=> 'App\Controllers\AddJobController',
     'action' => 'getAddJobAction'
     ]);
 
 // Projects mapping
-$map->get('addProjects', '/cursophp/projects/add', [
+$map->get('addProjects', '/projects/add', [
     'controller'=> 'App\Controllers\AddProjectController',
     'action' => 'getAddProjectAction',
     'auth' => true
     ]);
-$map->post('saveProjects', '/cursophp/projects/add', [
+$map->post('saveProjects', '/projects/add', [
     'controller'=> 'App\Controllers\AddProjectController',
     'action' => 'getAddProjectAction'
     ]);
 
 // User mapping
-$map->get('addUsers', '/cursophp/users/add', [
+$map->get('addUsers', '/users/add', [
     'controller'=> 'App\Controllers\AddUserController',
     'action' => 'getAddUserAction',
     'auth' => true
     ]);
-$map->post('saveUsers', '/cursophp/users/add', [
+$map->post('saveUsers', '/users/add', [
     'controller'=> 'App\Controllers\AddUserController',
     'action' => 'getAddUserAction'
     ]);
 
 // Login mapping
-$map->get('loginForm', '/cursophp/login', [
+$map->get('loginForm', '/login', [
     'controller'=> 'App\Controllers\AuthController',
     'action' => 'getLogin'
     ]);
-$map->post('auth', '/cursophp/auth', [
+$map->post('auth', '/auth', [
     'controller'=> 'App\Controllers\AuthController',
     'action' => 'postLogin'
     ]);
-$map->get('logout', '/cursophp/logout', [
+$map->get('logout', '/logout', [
     'controller'=> 'App\Controllers\AuthController',
     'action' => 'getLogout'
     ]);
 
 // admin mapping
-$map->get('admin', '/cursophp/admin', [
+$map->get('admin', '/admin', [
     'controller'=> 'App\Controllers\AdminController',
     'action' => 'getIndex',
     'auth' => true
