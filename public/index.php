@@ -9,6 +9,11 @@ require_once '../vendor/autoload.php';
 
 session_start();
 
+// El uso de getenv () y putenv () está fuertemente desaconsejado debido al hecho de que estas funciones no son seguras para subprocesos, sin embargo, aún es posible instruir a PHP dotenv para que use estas funciones. En lugar de llamar a Dotenv :: createImmutable, puede llamar a Dotenv :: createUnsafeImmutable, que agregará el PutenvAdapter por debajo. Sus variables de entorno ahora estarán disponibles utilizando el método getenv, así como los superglobales.
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__ . '/..');
+$dotenv->load();
+
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 // Aura.Router
 use Aura\Router\RouterContainer;
@@ -18,10 +23,10 @@ $capsule = new Capsule;
 
 $capsule->addConnection([
     'driver'    => 'mysql',
-    'host'      => 'localhost',
-    'database'  => 'cursophp',
-    'username'  => 'lolo',
-    'password'  => 'toor',
+    'host'      => getenv("DB_HOST"),
+    'database'  => getenv("DB_NAME"),
+    'username'  => getenv("DB_USER"),
+    'password'  => getenv("DB_PASS"),
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
